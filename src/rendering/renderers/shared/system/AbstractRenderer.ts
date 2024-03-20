@@ -412,13 +412,10 @@ export class AbstractRenderer<
 
     private _addSystems(systems: RendererConfig['systems']): void
     {
-        let i: keyof typeof systems;
+        let i: { name: string; value: SystemConstructor };
 
-        for (i in systems)
-        {
-            const val = systems[i];
-
-            this._addSystem(val.value, val.name);
+        for (i of systems) {
+            this._addSystem(i.value, i.name);
         }
     }
 
